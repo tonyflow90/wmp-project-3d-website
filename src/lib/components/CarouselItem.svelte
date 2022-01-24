@@ -7,7 +7,7 @@
   export let count = 0;
 
   $: rotateY = (360 / count) * index;
-  $: translateZ = count < 8 ? 360 : 360 * (count / 8);
+  $: translateZ = count < 5 ? 360 : 360 * (count / 5);
 </script>
 
 <div

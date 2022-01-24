@@ -3,6 +3,7 @@
 
     import Carousel from "$lib/components/Carousel.svelte";
     import CarouselItem from "$lib/components/CarouselItem.svelte";
+    import Rotatable from "$lib/components/Rotatable.svelte";
     import PokemonCard from "$lib/components/PokemonCard.svelte";
 
     import { cards } from "$lib/cards";
@@ -19,6 +20,8 @@
     const cardSet = "base1";
     let pokemonCards = [];
 
+    let selectedCard = null;
+
     let getPokemon = async () => {
         let cardCount = 0;
         await pokemon.set.find(cardSet).then((set) => {
@@ -34,6 +37,14 @@
             });
         }
     };
+
+    let moveToBack = async (e) => {
+        let selectedCard = e.detail;
+        sCard.style.display = "flex";
+        carousel.style.transform = "translateZ(-100000px) translateY(4000px)";
+    };
+
+    moveToBack;
 </script>
 
 <svelte:head>
@@ -42,18 +53,43 @@
 
 <main>
     <button on:click={getPokemon}>GET THEM ALL</button>
-    <div class="carousel">
-        <Carousel selectedIndex=0 count={cards.length}>
-            {#each cards as card}
-                <CarouselItem index={cards.indexOf(card)} count={cards.length}>
-                    <PokemonCard data={card.data} />
-                </CarouselItem>
-            {/each}
-        </Carousel>
-    </div>
+
+    <!-- <div id="sCard" class="card">
+        <PokemonCard data={selectedCard} cardSize="30vh" />
+    </div> -->
+
+    {#if selectedCard != null}
+        <div id="sCard" class="card">
+            <PokemonCard data={selectedCard} cardSize="30vh" />
+        </div>
+    {:else}
+        <div class="carousel">
+            <Carousel selectedIndex="0" count={cards.length}>
+                {#each cards as card}
+                    <CarouselItem
+                        on:click={moveToBack}
+                        index={cards.indexOf(card)}
+                        count={cards.length}
+                    >
+                        <!-- <Rotatable angle="5"> -->
+                        <PokemonCard
+                            data={card.data}
+                            cardSize="30vh"
+                            on:click={moveToBack}
+                        />
+                        <!-- </Rotatable> -->
+                    </CarouselItem>
+                {/each}
+            </Carousel>
+        </div>
+    {/if}
 </main>
 
 <style>
+    .card {
+        display: hidden;
+    }
+
     /* .carousel {
         display: flex;
         flex-direction: row;
