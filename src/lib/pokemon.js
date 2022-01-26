@@ -59,6 +59,21 @@ let getSet = async (id) => {
     });
 };
 
+let getAllCardsp = async (setId) => {
+    return new Promise(async (resolve, reject) => {
+        let set = await getSet(setId)
+
+        let cardp = [];
+        // for (let i = 1; i < set.printedTotal; i++) {
+        for (let i = 1; i < 3; i++) {
+                let cardId = `${set.id}-${i}`;
+            cardp.push(getCard(cardId));
+        }
+
+        resolve(cardp);
+    });
+};
+
 let getAllCards = async (setId) => {
     return new Promise(async (resolve, reject) => {
         let set = await getSet(setId)
@@ -88,4 +103,4 @@ let getCard = async (id) => {
     });
 };
 
-export default { getAllSets, getSet, getAllCards, getCard, getAll };
+export default { getAllSets, getSet, getAllCards, getCard, getAll, getAllCardsp };

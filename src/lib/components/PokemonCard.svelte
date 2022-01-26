@@ -11,7 +11,7 @@
     const dispatch = createEventDispatcher();
 
     let click = async (e) => {
-        dispatch("click", data);
+        dispatch("click", e);
     };
 </script>
 
@@ -20,7 +20,7 @@
         <img src={data.images.large} alt={data.name} />
     </div>
     <div class="card__face card--back">
-        <img src="./images/cards/base1_back.png" alt={data.name} />
+        <img src="/images/cards/base1_back.png" alt={data.name} />
     </div>
 </div>
 {#if shadow}

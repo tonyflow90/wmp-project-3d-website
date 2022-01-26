@@ -1,54 +1,41 @@
 <script>
     import { onMount } from "svelte";
-
     import { page } from "$app/stores";
-
     import { base } from "$app/paths";
-
-    import { routes } from "$lib/routes";
-
-    $: url = $page.url.pathname;
-
-    console.log($page.url);
-
-    import PokemonCard from "$lib/components/PokemonCard.svelte";
 
     import { sets, cards } from "$lib/stores.js";
 
+    import PokemonCard from "$lib/components/PokemonCard.svelte";
+
     import pokemon from "$lib/pokemon.js";
 
-    onMount(async () => {
-        if (!$cards) {
-            cards.set(await pokemon.getAllCards("base1"));
-        }
-    });
+    const cardId = $page.params.uid;
 
-    let title = "Set";
+    onMount(async () => {});
 
-    let moveToBack;
+    let loadCard = async () => {
+        return pokemon.getCard(cardId);
+    };
 
-    let cardHeight = 400,
+    let title = "Card";
+
+    let cardHeight = 600,
         cardWidth = cardHeight * (9 / 16);
 </script>
 
 <svelte:head>
     <title>{title}</title>
 </svelte:head>
-{url}
-{#await $cards}
-    <p>...waiting</p>
-{:then aCards}
-    {#if aCards}
-        <div class="grid">
-            {#each aCards as card}
-                <PokemonCard
-                    data={card}
-                    --height={`${cardHeight}px`}
-                    --width={`${cardWidth}px`}
-                    on:click={moveToBack}
-                />
-            {/each}
-        </div>
+
+{#await loadCard()}
+    <p>...waiting for card</p>
+{:then card}
+    {#if card}
+        <PokemonCard data-tilt
+            data={card}
+            --height={`${cardHeight}px`}
+            --width={`${cardWidth}px`}
+        />
     {/if}
 {:catch error}
     <p style="color: red">{error.message}</p>
@@ -63,8 +50,8 @@
         align-content: center;
         grid-template-columns: repeat(5, 1fr);
         grid-template-rows: auto;
-        grid-column-gap: 0px;
-        grid-row-gap: 0px;
+        grid-column-gap: 5px;
+        grid-row-gap: 5px;
     }
 
     @media only screen and (max-width: 1600px) {
