@@ -69,8 +69,8 @@ let getAllCards = async (setId) => {
             cardp.push(getCard(cardId));
         }
 
-        Promise.all(aPromise).then((values) => {
-            resolve(values);
+        Promise.all(cardp).then((cards) => {
+            resolve(cards);
         }).catch(e => {
             reject(e);
         });
@@ -80,7 +80,7 @@ let getAllCards = async (setId) => {
 let getCard = async (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let card = await pokemon.set.find(id);
+            let card = await pokemon.card.find(id);
             resolve(card);
         } catch (e) {
             reject(e);

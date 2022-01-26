@@ -54,7 +54,7 @@
         if (el.classList.contains("scaled")) {
             el.classList.remove("scaled");
         } else {
-            // el.classList.add("scaled");
+            el.classList.add("scaled");
         }
         // Book.toggleScaled(e)
         // let el = e.detail.currentTarget;
@@ -103,7 +103,10 @@
     {#if aSet}
         <div class="grid">
             {#each aSet as set}
-                    <Book
+                <!-- style={`width:${
+                bookWidth - bookWidth * 0.5
+            }px; height:${bookHeight * 0.5}px;`} -->
+                <Book
                     on:click={openSet}
                     --height={`${bookHeight}px`}
                     --width={`${bookWidth}px`}
@@ -112,8 +115,8 @@
                     <div slot="cover-front">
                         <img
                             style={`width:${
-                                bookWidth - bookWidth * 0.1
-                            }px; height:${bookHeight * 0.5}px;`}
+                                bookWidth - bookWidth * 0.5
+                            }px; height:${bookWidth * 0.5}px;`}
                             src={set.images.logo}
                             alt={set.name}
                         />

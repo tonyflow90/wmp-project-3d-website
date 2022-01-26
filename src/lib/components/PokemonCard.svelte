@@ -3,7 +3,7 @@
 
     onMount(() => {});
 
-    export let cardSize = "600px";
+    export let shadow = false;
     export let data = undefined;
 
     import { createEventDispatcher } from "svelte";
@@ -15,12 +15,7 @@
     };
 </script>
 
-<div
-    on:click={click}
-    id="card"
-    class="card no-drag"
-    style="--card-size: {cardSize}"
->
+<div on:click={click} id="card" class="card no-drag">
     <div class="card__face card--front">
         <img src={data.images.large} alt={data.name} />
     </div>
@@ -28,12 +23,16 @@
         <img src="./images/cards/base1_back.png" alt={data.name} />
     </div>
 </div>
-<div id="shadow" style="--card-size: {cardSize}" />
+{#if shadow}
+    <div id="shadow" />
+{/if}
 
 <style>
     :root {
-        --card-height: var(--card-size);
-        --card-width: calc(var(--card-size) / 16 * 9);
+        --calc-size-width: calc(var(--size) / 16 * 9);
+        --height: var(--size, 400px);
+        --width: var(--calc-size-width, 300px);
+        --bg-color: grey;
     }
 
     .no-drag {
@@ -45,8 +44,8 @@
         -ms-user-select: none;
     }
     .container {
-        height: var(--card-size);
-        width: calc(var(--card-size) / 16 * 9);
+        height: var(--height);
+        width: var(--width);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -55,8 +54,9 @@
     }
 
     .card {
-        height: var(--card-size);
-        width: calc(var(--card-size) / 16 * 9);
+        height: var(--height);
+        width: var(--width);
+        padding: calc(var(--height) * 0.02);
         position: relative;
         transition: transform 1s;
         transform-style: preserve-3d;
@@ -64,21 +64,20 @@
 
     #shadow {
         content: "";
-        top: calc(var(--card-size));
-        height: calc(var(--card-size) / 2);
-        width: calc(var(--card-size) / 16 * 9);
+        top: var(--height);
+        height: calc(var(--height) / 2);
+        width: var(--width);
         transform: rotateX(-75deg) rotateZ(15deg);
         position: fixed;
         z-index: -1;
         background-color: rgb(0, 0, 0);
-        border-radius: calc(var(--card-size) / 4);
+        border-radius: calc(var(--height) / 4);
         opacity: 0.05;
     }
 
     img {
-        height: var(--card-size);
-        width: calc(var(--card-size) / 16 * 9);
-        /* pointer-events: none; */
+        height: var(--height);
+        width: var(--width);
     }
 
     .card__face {
