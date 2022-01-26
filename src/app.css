@@ -40,6 +40,7 @@ body::before {
 
 main {
   display: flex;
+  justify-content: center;
   flex-direction: column;
   min-height: 100vh;
   width: 100vw;
@@ -53,4 +54,17 @@ main {
 
 * {
   box-sizing: border-box;
+}
+
+.scaled {
+  display: flex;
+  /* justify-self: center;
+  align-self: center;
+  align-items: center; */
+  /* position: relative; */
+  transform: scale3d(1.5, 1.5, 1.5);
+  transition: linear 1s;
+  z-index: 10;
+  /* position: absolute; */
+  /* top: 50%; */
 }

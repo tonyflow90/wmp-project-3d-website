@@ -29,17 +29,17 @@
   };
 </script>
 
-<!-- <div class="content"> -->
+<div class="content">
   <div class="carousel-container">
     <div id="carousel" class="carousel-content">
       <slot />
     </div>
   </div>
-  <!-- <div class="grid">
+  <div class="grid">
     <button id="prev" on:click={previous} class="button">previous</button>
     <button id="next" on:click={next} class="button">next</button>
   </div>
-</div> -->
+</div>
 
 <style>
   .content {
@@ -50,8 +50,10 @@
   .carousel-container {
     display: flex;
     justify-content: center;
+    align-items: center;
     min-height: 80vh;
-    overflow-x: hidden;
+    /* min-height: 30vh; */
+    overflow: hidden;
     perspective: 10000px;
   }
 

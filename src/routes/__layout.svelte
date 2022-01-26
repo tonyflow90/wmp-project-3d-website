@@ -1,7 +1,19 @@
 <script>
-  import '../app.css';
+  import "../app.css";
 </script>
 
-<div>
+<header />
+
+<main>
   <slot />
-</div>
+</main>
+
+<footer />
+
+<style>
+  main {
+    display: flex;
+    align-self: center;
+    max-width: 80vw;
+  }
+</style>

@@ -4,7 +4,7 @@
     onMount(() => {});
 
     export let cardSize = "600px";
-    export let data = {};
+    export let data = undefined;
 
     import { createEventDispatcher } from "svelte";
 
@@ -15,22 +15,20 @@
     };
 </script>
 
-<!-- {#if data != null} -->
-    <div
-        on:click={click}
-        id="card"
-        class="card no-drag"
-        style="--card-size: {cardSize}"
-    >
-        <div class="card__face card--front">
-            <img src={data.images.large} alt={data.name} />
-        </div>
-        <div class="card__face card--back">
-            <img src="./images/cards/base1_back.png" alt={data.name} />
-        </div>
+<div
+    on:click={click}
+    id="card"
+    class="card no-drag"
+    style="--card-size: {cardSize}"
+>
+    <div class="card__face card--front">
+        <img src={data.images.large} alt={data.name} />
     </div>
-    <div id="shadow" style="--card-size: {cardSize}" />
-<!-- {/if} -->
+    <div class="card__face card--back">
+        <img src="./images/cards/base1_back.png" alt={data.name} />
+    </div>
+</div>
+<div id="shadow" style="--card-size: {cardSize}" />
 
 <style>
     :root {
