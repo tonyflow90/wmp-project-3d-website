@@ -1,19 +1,21 @@
 <script>
   import "../app.css";
+
+  import Header from "$lib/components/Header.svelte";
+  import Footer from "$lib/components/Footer.svelte";
 </script>
 
-<header />
+<header>
+  <Header />
+</header>
 
 <main>
   <slot />
 </main>
 
-<footer />
+<footer>
+  <Footer />
+</footer>
 
 <style>
-  main {
-    display: flex;
-    align-self: center;
-    max-width: 80vw;
-  }
 </style>

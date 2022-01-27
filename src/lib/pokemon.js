@@ -48,6 +48,24 @@ let getAllSets = async (id) => {
     });
 };
 
+let getRandomSets = async (count = 1) => {
+    return new Promise(async (resolve, reject) => {
+
+        let randomSets = sets.sort(() => Math.random() - Math.random()).slice(0, count)
+
+        let setp = []
+        randomSets.forEach(set => {
+            setp.push(pokemon.set.find(set))
+        });
+
+        Promise.all(setp).then((sets) => {
+            resolve(sets);
+        }).catch(e => {
+            reject(e);
+        });
+    });
+};
+
 let getSet = async (id) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -64,9 +82,9 @@ let getAllCardsp = async (setId) => {
         let set = await getSet(setId)
 
         let cardp = [];
-        // for (let i = 1; i < set.printedTotal; i++) {
-        for (let i = 1; i < 3; i++) {
-                let cardId = `${set.id}-${i}`;
+        for (let i = 1; i < set.printedTotal; i++) {
+            // for (let i = 1; i < 3; i++) {
+            let cardId = `${set.id}-${i}`;
             cardp.push(getCard(cardId));
         }
 
@@ -92,6 +110,22 @@ let getAllCards = async (setId) => {
     });
 };
 
+let getRandomCards = async (count = 1) => {
+    return new Promise(async (resolve, reject) => {
+
+        let randomSets = await getRandomSets(count);
+
+        let cardp = [];
+        randomSets.forEach(set => {
+            let randomNumber = Math.floor(Math.random() * set.printedTotal);
+            let cardId = `${set.id}-${randomNumber}`;
+            cardp.push(getCard(cardId));
+        });
+
+        resolve(cardp);
+    });
+};
+
 let getCard = async (id) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -103,4 +137,4 @@ let getCard = async (id) => {
     });
 };
 
-export default { getAllSets, getSet, getAllCards, getCard, getAll, getAllCardsp };
+export default { getAllSets, getSet, getAllCards, getCard, getAll, getAllCardsp, getRandomSets, getRandomCards };

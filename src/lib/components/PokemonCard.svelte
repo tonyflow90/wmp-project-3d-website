@@ -7,24 +7,43 @@
     export let data = undefined;
 
     import { createEventDispatcher } from "svelte";
+    import LoadingIndicator from "./LoadingIndicator.svelte";
 
     const dispatch = createEventDispatcher();
 
     let click = async (e) => {
         dispatch("click", e);
     };
+
+    import { fly } from "svelte/transition";
+
+    let preload = (src) => {
+        return new Promise(function (resolve) {
+            let img = new Image();
+            img.onload = resolve;
+            img.src = src;
+        });
+    };
 </script>
 
-<div on:click={click} id="card" class="card no-drag">
-    <div class="card__face card--front">
-        <img src={data.images.large} alt={data.name} />
+{#if data}
+    <div on:click={click} id="card" class="card no-drag">
+        <div class="card__face card--front">
+            {#await preload(data.images.large)}
+                <LoadingIndicator />
+            {:then src}
+                <img src={data.images.large} alt={data.name} />
+            {:catch error}
+                <p style="color: red">{error.message}</p>
+            {/await}
+        </div>
+        <div class="card__face card--back">
+            <img src="/images/cards/base1_back.png" alt={data.name} />
+        </div>
     </div>
-    <div class="card__face card--back">
-        <img src="/images/cards/base1_back.png" alt={data.name} />
-    </div>
-</div>
-{#if shadow}
-    <div id="shadow" />
+    {#if shadow}
+        <div id="shadow" />
+    {/if}
 {/if}
 
 <style>
@@ -56,7 +75,7 @@
     .card {
         height: var(--height);
         width: var(--width);
-        padding: calc(var(--height) * 0.02);
+        margin: calc(var(--height) * 0.02);
         position: relative;
         transition: transform 1s;
         transform-style: preserve-3d;
