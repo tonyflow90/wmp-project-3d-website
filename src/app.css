@@ -117,7 +117,4 @@ a:active {
     grid-column-gap: 5px;
     grid-row-gap: 5px;
   }
-  Headline {
-    --width: 200px;
-  }
 }

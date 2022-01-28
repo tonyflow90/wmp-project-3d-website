@@ -400,9 +400,4 @@
     .no-csstransforms3d .container .book .bk-book > div.bk-front {
         display: block;
     }
-
-    .no-csstransforms3d .bk-info button,
-    .no-js .bk-info button {
-        display: none;
-    }
 </style>

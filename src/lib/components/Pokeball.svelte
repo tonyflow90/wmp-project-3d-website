@@ -2,10 +2,14 @@
     import { onMount } from "svelte";
 
     onMount(() => {});
+
+    export let animate = false;
+    export let shake = false;
+    export let blink = false;
 </script>
 
-<div class="pokeball">
-    <div class="pokeball__button" />
+<div class="pokeball {animate || shake ? 'shake' : ''}">
+    <div class="pokeball__button {animate || blink ? 'blink' : ''}" />
 </div>
 
 <style>
@@ -31,8 +35,13 @@
         overflow: hidden;
         box-shadow: inset calc(var(--size) * 0.05 * -1) calc(var(--size) * 0.05)
             0 calc(var(--size) * 0.05) #ccc;
+        /* animation: shake 1.25s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite; */
+    }
+
+    .shake {
         animation: shake 1.25s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
     }
+
     .pokeball::before,
     .pokeball::after {
         content: "";
@@ -42,13 +51,20 @@
         background: red;
         width: 100%;
         height: 50%;
+        top: 0;
+        left: 0;
+        right: 0;
     }
     .pokeball::after {
-        top: calc(50% - 10px);
+        top: calc(50%);
         width: 100%;
         height: calc(var(--size) * 0.1);
         background: #000;
+        bottom: 0;
+        left: 0;
+        right: 0;
     }
+
     .pokeball__button {
         position: absolute;
         top: calc(50% - calc(var(--size) * 0.1));
@@ -60,6 +76,9 @@
         border-radius: 50%;
         z-index: 10;
         box-shadow: 0 0 0 calc(var(--size) * 0.05) black;
+    }
+
+    .blink {
         animation: blink 0.5s alternate infinite;
     }
 

@@ -6,7 +6,11 @@
     import { base } from "$app/paths";
 
     import Book from "$lib/components/Book.svelte";
+    import Box from "$lib/components/Box.svelte";
+    import CardBox from "$lib/components/CardBox.svelte";
+    import SetBox from "$lib/components/SetBox.svelte";
     import PokemonCard from "$lib/components/PokemonCard.svelte";
+    import Pokeball from "$lib/components/Pokeball.svelte";
     import Tiltable from "$lib/components/Tiltable.svelte";
     import Headline from "$lib/components/Headline.svelte";
 
@@ -24,6 +28,12 @@
             color += letters[Math.floor(Math.random() * 16)];
         }
         return color;
+    };
+
+    let randomHueColor = () => {
+        const hueColors = [...Array(12).keys()].map((x) => (x + 1) * 30);
+        var hueColor = hueColors[Math.floor(Math.random() * hueColors.length)];
+        return hueColor;
     };
 
     let loadRandomSets = () => {
@@ -49,62 +59,13 @@
 </svelte:head>
 
 <div class="content">
-
-    <Headline text={randomCardsText} --width="600px" --hue="265" />
-
-    {#await loadRandomCards()}
-        <LoadingIndicator
-            --height={`${cardHeight}px`}
-            --width={`${cardWidth}px`}
-        />
-    {:then promises}
-        <div class="grid">
-            {#each promises as item, index}
-                {#await item}
-                    <!-- <LoadingIndicator
-                        --height={`${cardHeight}px`}
-                        --width={`${cardWidth}px`}
-                    /> -->
-                {:then card}
-                    {#if card}
-                    <!-- <div
-                    in:fly={{
-                        x: index * -1 * cardWidth,
-                        y: 0,
-                        duration: 2000,
-                    }}
-                    out:fade
-                > -->
-                <div
-                            in:fade={{
-                                duration: 500,
-                            }}
-                            out:fade
-                        >
-                            <Tiltable>
-                                <a href="{base}/card/{card.id}">
-                                    <PokemonCard
-                                        data={card}
-                                        --height={`${cardHeight}px`}
-                                        --width={`${cardWidth}px`}
-                                    />
-                                </a>
-                            </Tiltable>
-                        </div>
-                    {/if}
-                {:catch error}
-                    <p style="color: red">{error.message}</p>
-                {/await}
-            {/each}
-        </div>
-    {:catch error}
-        <p style="color: red">{error.message}</p>
-    {/await}
-
-    <Headline text={randomSetsText} --width="600px" --hue="165" />
+    <Headline text={randomSetsText} --hue="165" />
 
     {#await loadRandomSets()}
-        <p>...waiting</p>
+        <LoadingIndicator
+            --height={`${bookHeight}px`}
+            --width={`${bookWidth}px`}
+        />
     {:then aSet}
         {#if aSet}
             <div class="grid">
@@ -136,6 +97,52 @@
     {:catch error}
         <p style="color: red">{error.message}</p>
     {/await}
+
+
+    
+    <Headline text={randomCardsText} --hue="265" />
+
+    {#await loadRandomCards()}
+        <LoadingIndicator
+            --height={`${cardHeight}px`}
+            --width={`${cardWidth}px`}
+        />
+    {:then promises}
+        <div class="grid">
+            {#each promises as item, index}
+                {#await item}
+                    <LoadingIndicator
+                        --height={`${cardHeight}px`}
+                        --width={`${cardWidth}px`}
+                    />
+                {:then card}
+                    {#if card}
+                        <div
+                            in:fade={{
+                                duration: 500,
+                            }}
+                            out:fade
+                        >
+                            <Tiltable>
+                                <a href="{base}/card/{card.id}">
+                                    <PokemonCard
+                                        data={card}
+                                        --height={`${cardHeight}px`}
+                                        --width={`${cardWidth}px`}
+                                    />
+                                </a>
+                            </Tiltable>
+                        </div>
+                    {/if}
+                {:catch error}
+                    <p style="color: red">{error.message}</p>
+                {/await}
+            {/each}
+        </div>
+    {:catch error}
+        <p style="color: red">{error.message}</p>
+    {/await}
+
 </div>
 
 <style>
@@ -146,12 +153,26 @@
         align-items: center;
     }
 
-    Headline {
-
-    }
-
     .grid {
         min-height: 600px;
         grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media only screen and (max-width: 1600px) {
+        .grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    @media only screen and (max-width: 900px) {
+        .grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+        .grid {
+            grid-template-columns: repeat(1, 1fr);
+        }
     }
 </style>

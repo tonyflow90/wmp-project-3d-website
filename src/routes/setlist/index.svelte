@@ -10,6 +10,7 @@
     import { routes } from "$lib/routes";
 
     import pokemon from "$lib/pokemon.js";
+    import SetBox from "$lib/components/SetBox.svelte";
     import LoadingIndicator from "$lib/components/LoadingIndicator.svelte";
     import Headline from "$lib/components/Headline.svelte";
 
@@ -58,7 +59,20 @@
             <div class="grid">
                 {#each aSet as set}
                     <a href="{base}/set/{set.id}">
-                        <Book
+                        <SetBox size="300" darkenLeft darkenBottom>
+                            <img
+                                style={`width:${
+                                    bookWidth - bookWidth * 0.5
+                                }px; height:${bookWidth * 0.5}px;`}
+                                src={set.images.logo}
+                                alt={set.name}
+                            />
+                            <h2>
+                                <span>{set.name}</span>
+                            </h2>
+                            <span>{set.series}</span>
+                        </SetBox>
+                        <!-- <Book
                             on:click={openSet}
                             --height={`${bookHeight}px`}
                             --width={`${bookWidth}px`}
@@ -77,7 +91,7 @@
                                 </h2>
                                 <span>{set.series}</span>
                             </div>
-                        </Book>
+                        </Book> -->
                     </a>
                 {/each}
             </div>

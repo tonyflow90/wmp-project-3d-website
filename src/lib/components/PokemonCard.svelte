@@ -15,8 +15,6 @@
         dispatch("click", e);
     };
 
-    import { fly } from "svelte/transition";
-
     let preload = (src) => {
         return new Promise(function (resolve) {
             let img = new Image();
@@ -61,15 +59,6 @@
         -moz-user-select: none;
         -webkit-user-select: none;
         -ms-user-select: none;
-    }
-    .container {
-        height: var(--height);
-        width: var(--width);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        perspective: 10000px;
-        cursor: move;
     }
 
     .card {

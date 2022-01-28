@@ -33,18 +33,19 @@
     .footer {
         padding: calc(var(--width) * 0.04) calc(var(--width) * 0.1);
         background-color: var(--color);
-        width: var(--width);
+        /* width: var(--width); */
         /* margin-left: calc(var(--width) * 0.05 * -1); */
         font-size: var(--font-size);
         color: var(--color-darken);
         font-weight: bold;
+        overflow: hidden;
     }
 
     .trapezoid {
-        border-bottom: calc(var(--width) * 0.15) solid var(--color-lighten);
-        border-left: calc(var(--width) * 0.15) solid transparent;
-        border-right: calc(var(--width) * 0.15) solid transparent;
+        border-bottom: calc(var(--width) * 0.025) solid var(--color-lighten);
+        border-left: calc(var(--width) * 0.05) solid transparent;
+        border-right: calc(var(--width) * 0.05) solid transparent;
         height: 0;
-        width: var(--width);
+        /* width: var(--width); */
     }
 </style>

@@ -7,7 +7,7 @@
 </script>
 
 <div class="loading">
-    <Pokeball --size="100px" />
+    <Pokeball --size="100px" animate />
 </div>
 
 <div>
