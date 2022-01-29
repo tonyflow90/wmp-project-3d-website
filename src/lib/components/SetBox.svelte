@@ -23,7 +23,7 @@
     export let size = 400;
 </script>
 
-<div class="content">
+<div class="content box">
     <Box
         --size-x={`${size * (3 / 4)}px`}
         --size-y={`${size}px`}
@@ -57,5 +57,10 @@
         justify-content: center;
         width: var(--size-x);
         height: var(--size-y);
+    }
+
+    .box:hover {
+        transition: ease 0.5s;
+        transform: scale3d(1.2, 1.2, 1.2);
     }
 </style>

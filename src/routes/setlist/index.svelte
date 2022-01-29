@@ -1,6 +1,9 @@
 <script>
     import { onMount } from "svelte";
 
+    import { fly, fade } from "svelte/transition";
+
+
     import Book from "$lib/components/Book.svelte";
 
     import { page } from "$app/stores";
@@ -46,8 +49,20 @@
     <title>{title}</title>
 </svelte:head>
 
-<div class="content">
-    <Headline {text} --width="600px" --hue="165" />
+<div
+    class="content"
+    in:fly={{
+        y: -500,
+        duration: 1000,
+    }}
+    out:fly={{
+        y: 500,
+        duration: 1000,
+    }}
+>
+    <Headline --hue="165">
+        {text}
+    </Headline>
 
     {#await pokemon.getAllSets()}
         <LoadingIndicator
@@ -59,7 +74,7 @@
             <div class="grid">
                 {#each aSet as set}
                     <a href="{base}/set/{set.id}">
-                        <SetBox size="300" darkenLeft darkenBottom>
+                        <!-- <SetBox size="300" darkenLeft darkenBottom>
                             <img
                                 style={`width:${
                                     bookWidth - bookWidth * 0.5
@@ -71,8 +86,8 @@
                                 <span>{set.name}</span>
                             </h2>
                             <span>{set.series}</span>
-                        </SetBox>
-                        <!-- <Book
+                        </SetBox> -->
+                        <Book
                             on:click={openSet}
                             --height={`${bookHeight}px`}
                             --width={`${bookWidth}px`}
@@ -91,7 +106,7 @@
                                 </h2>
                                 <span>{set.series}</span>
                             </div>
-                        </Book> -->
+                        </Book>
                     </a>
                 {/each}
             </div>

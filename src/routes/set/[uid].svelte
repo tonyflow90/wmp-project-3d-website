@@ -46,8 +46,18 @@
     <title>{title}</title>
 </svelte:head>
 
-<div class="content">
-    <Headline {text} --width="600px" --hue="165" />
+<div
+    class="content"
+    in:fly={{
+        y: 500,
+        duration: 1000,
+    }}
+    out:fly={{
+        y: 500,
+        duration: 500,
+    }}
+>
+    <Headline {text} --hue="165" />
 
     <div id="setGrid" class="grid">
         {#await loadCards()}
@@ -64,11 +74,17 @@
                     />
                 {:then card}
                     {#if card}
-                        <div
+                        <!-- <div
                             in:fly={{
                                 x: index * -1 * cardWidth,
                                 y: (index / 6) * 1 * cardHeight,
                                 opacity: 1,
+                                duration: 1000,
+                            }}
+                            out:fade
+                        > -->
+                        <div
+                            in:fade={{
                                 duration: 1000,
                             }}
                             out:fade

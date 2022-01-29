@@ -3,6 +3,7 @@
     import { page } from "$app/stores";
     import { base } from "$app/paths";
 
+    import { fly, fade } from "svelte/transition";
 
     import PokemonCard from "$lib/components/PokemonCard.svelte";
 
@@ -26,18 +27,30 @@
     <title>{title}</title>
 </svelte:head>
 
-{#await loadCard() then card}
-    {#if card}
-        <PokemonCard data-tilt
-            data={card}
-            --height={`${cardHeight}px`}
-            --width={`${cardWidth}px`}
-        />
-    {/if}
-{:catch error}
-    <p style="color: red">{error.message}</p>
-{/await}
+<div
+    class="content"
+    in:fly={{
+        y: -500,
+        duration: 1000,
+    }}
+    out:fly={{
+        y: 500,
+        duration: 1000,
+    }}
+>
+    {#await loadCard() then card}
+        {#if card}
+            <PokemonCard
+                data-tilt
+                data={card}
+                --height={`${cardHeight}px`}
+                --width={`${cardWidth}px`}
+            />
+        {/if}
+    {:catch error}
+        <p style="color: red">{error.message}</p>
+    {/await}
+</div>
 
 <style>
-
 </style>

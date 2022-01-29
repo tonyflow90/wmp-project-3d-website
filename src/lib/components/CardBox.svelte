@@ -22,7 +22,7 @@
     export let size = 200;
 </script>
 
-<div class="box" >
+<div class="content box" >
     <Box
         --size-x={`${size * (3 / 4)}px`}
         --size-y={`${size}px`}

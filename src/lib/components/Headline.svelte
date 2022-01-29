@@ -1,72 +1,69 @@
 <script>
-    export let text;
+    import Trapezoid from "$lib/components/Trapezoid.svelte";
 </script>
 
-<div class="heading">{text}</div>
-<div class="trapezoid" />
+<div class="headline">
+    <Trapezoid bottom>
+        <div class="headline-content">
+            <div class="headline-icon">
+                <slot name="icon" />
+            </div>
+            <div class="headline-text">
+                <slot />
+            </div>
+        </div>
+    </Trapezoid>
+</div>
 
 <style>
     :root {
-        --font-size: 2.5em;
-        --hue: 1;
-        --saturation: 64%;
-        --light: 44%;
+        --headline-width: 600px;
     }
 
-    div {
-        --width: 600px;
-        --color: hsl(var(--hue), var(--saturation), var(--light));
-        --color-lighten: hsl(
-            var(--hue),
-            var(--saturation),
-            calc(var(--light) + 10%)
-        );
-        --color-darken: hsl(
-            var(--hue),
-            var(--saturation),
-            calc(var(--light) - 10%)
-        );
+    .headline {
+        width: var(--headline-width, 600px);
+        padding-bottom: calc(var(--headline-width) * 0.04);
+        padding-top: calc(var(--headline-width) * 0.06);
     }
 
-    .heading {
-        text-align: center;
-        margin-top: calc(var(--width) * 0.06);
-        padding: calc(var(--width) * 0.04) calc(var(--width) * 0.1);
-        background-color: var(--color-lighten);
-        width: var(--width);
-        max-width: var(--width);
-        margin-left: calc(var(--width) * 0.05 * -1);
-        font-size: var(--font-size);
-        color: var(--color-darken);
+    .headline-content {
+        display: flex;
+        flex-direction: column;
+        min-height: 100px;
+    }
+
+    .headline-icon {
+        font-size: 1.5em;
         font-weight: bold;
+        text-align: center;
     }
 
-    .trapezoid {
-        border-top: calc(var(--width) * 0.05) solid var(--color);
-        border-left: calc(var(--width) * 0.05) solid transparent;
-        border-right: calc(var(--width) * 0.05) solid transparent;
-        height: 0;
-        width: var(--width);
-        max-width: var(--width);
-        margin-left: calc(var(--width) * 0.05 * -1);
-        margin-bottom: calc(var(--width) * 0.04);
+    .headline-text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: inherit;
+        width: inherit;
+        font-size: 2.5em;
+        font-weight: bold;
+        text-align: center;
     }
 
     @media only screen and (max-width: 1600px) {
-        div {
-            --width: 600px;
+        .headline {
+            width: 600px;
         }
     }
 
     @media only screen and (max-width: 900px) {
-        div {
-            --width: 500px;
+        .headline {
+            width: 500px;
         }
     }
 
     @media only screen and (max-width: 600px) {
-        div {
-            --width: 300px;
+        .headline {
+            width: 300px;
         }
     }
 </style>

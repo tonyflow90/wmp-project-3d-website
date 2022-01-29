@@ -1,6 +1,8 @@
 <script>
     import { onMount } from "svelte";
 
+    import { base } from "$app/paths";
+
     onMount(() => {});
 
     export let shadow = false;
@@ -36,7 +38,7 @@
             {/await}
         </div>
         <div class="card__face card--back">
-            <img src="/images/cards/base1_back.png" alt={data.name} />
+            <img src="{base}/images/cards/base1_back.png" alt={data.name} />
         </div>
     </div>
     {#if shadow}

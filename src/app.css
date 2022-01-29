@@ -19,14 +19,14 @@ body {
   flex-direction: column;
   min-height: var(--vh, 100vh);
   margin: 0;
-  background-color: var(--primary-color);
-  background: linear-gradient(180deg,
+  background-color: var(--pure-white);
+  /* background: linear-gradient(180deg,
       var(--primary-color) 0%,
       var(--secondary-color) 10.45%,
-      var(--tertiary-color) 41.35%);
+      var(--tertiary-color) 41.35%); */
 }
 
-body::before {
+/* body::before {
   content: '';
   width: 80vw;
   height: var(--vh, 100vh);
@@ -36,9 +36,9 @@ body::before {
   z-index: -1;
   background: radial-gradient(50% 50% at 50% 50%,
       var(--pure-white) 0%,
-      rgba(255, 255, 255, 0) 100%);
+      rgb(255, 0, 0) 100%);
   opacity: 0.05;
-}
+} */
 
 main {
   display: flex;
@@ -50,6 +50,7 @@ main {
   min-height: var(--vh, 100vh);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 * {

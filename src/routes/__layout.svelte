@@ -15,7 +15,7 @@
 </main>
 
 <footer>
-  <Footer />
+  <Footer --hue=165 />
 </footer>
 
 <style>
