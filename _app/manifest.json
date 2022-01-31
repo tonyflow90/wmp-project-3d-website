@@ -1,6 +1,6 @@
 {
   ".svelte-kit/runtime/client/start.js": {
-    "file": "start-a41f148d.js",
+    "file": "start-b3b0498f.js",
     "src": ".svelte-kit/runtime/client/start.js",
     "isEntry": true,
     "imports": [
@@ -12,25 +12,24 @@
       ".svelte-kit/runtime/components/error.svelte",
       "src/routes/index.svelte",
       "src/routes/setlist/index.svelte",
-      "src/routes/card/[uid].svelte",
+      "src/routes/card/[setId]-[cardId].svelte",
       "src/routes/set/[uid].svelte"
     ]
   },
   "src/routes/__layout.svelte": {
-    "file": "pages/__layout.svelte-8968394c.js",
+    "file": "pages/__layout.svelte-3fd9eec7.js",
     "src": "src/routes/__layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_vendor-df654c82.js",
       "_paths-4b3c6e7e.js",
-      "_Headline.svelte_svelte_type_style_lang-68fb4a89.js"
+      "_Headline.svelte_svelte_type_style_lang-47de378a.js"
     ],
     "css": [
-      "assets/pages/__layout.svelte-d6ae886b.css",
-      "assets/SetBox.svelte_svelte_type_style_lang-b48dcff0.css",
-      "assets/Pokeball.svelte_svelte_type_style_lang-59115f93.css",
-      "assets/CardBox.svelte_svelte_type_style_lang-5dcb6997.css"
+      "assets/pages/__layout.svelte-7fa0f41d.css",
+      "assets/CardBox.svelte_svelte_type_style_lang-983274fb.css",
+      "assets/SetBox.svelte_svelte_type_style_lang-ddc1498f.css"
     ]
   },
   ".svelte-kit/runtime/components/error.svelte": {
@@ -43,64 +42,61 @@
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-09cb370c.js",
+    "file": "pages/index.svelte-5e56bde6.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_vendor-df654c82.js",
       "_paths-4b3c6e7e.js",
-      "_Book-459efd8c.js",
-      "_PokemonCard-547f9c3a.js",
-      "_Headline.svelte_svelte_type_style_lang-68fb4a89.js",
+      "_Book.svelte_svelte_type_style_lang-12460f86.js",
+      "_PokemonCard-6d7848a8.js",
+      "_Headline.svelte_svelte_type_style_lang-47de378a.js",
       "_Tiltable-03cf46c8.js",
-      "_Headline-6415203f.js",
-      "_pokemon-2349368c.js"
+      "_pokemon-a770bac3.js"
     ],
     "css": [
-      "assets/pages/index.svelte-e0f2796a.css",
-      "assets/SetBox.svelte_svelte_type_style_lang-b48dcff0.css",
-      "assets/Pokeball.svelte_svelte_type_style_lang-59115f93.css",
-      "assets/CardBox.svelte_svelte_type_style_lang-5dcb6997.css"
+      "assets/pages/index.svelte-2ca12dd9.css",
+      "assets/CardBox.svelte_svelte_type_style_lang-983274fb.css",
+      "assets/SetBox.svelte_svelte_type_style_lang-ddc1498f.css"
     ]
   },
   "src/routes/setlist/index.svelte": {
-    "file": "pages/setlist/index.svelte-9bb03940.js",
+    "file": "pages/setlist/index.svelte-bc06a2f6.js",
     "src": "src/routes/setlist/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_vendor-df654c82.js",
-      "_Book-459efd8c.js",
+      "_Book.svelte_svelte_type_style_lang-12460f86.js",
+      "_pokemon-a770bac3.js",
       "_paths-4b3c6e7e.js",
-      "_pokemon-2349368c.js",
-      "_Headline-6415203f.js",
-      "_Headline.svelte_svelte_type_style_lang-68fb4a89.js"
+      "_Headline.svelte_svelte_type_style_lang-47de378a.js"
     ],
     "css": [
-      "assets/pages/setlist/index.svelte-e3c6b5cd.css",
-      "assets/SetBox.svelte_svelte_type_style_lang-b48dcff0.css",
-      "assets/Pokeball.svelte_svelte_type_style_lang-59115f93.css"
+      "assets/pages/setlist/index.svelte-d3df3dec.css",
+      "assets/SetBox.svelte_svelte_type_style_lang-ddc1498f.css"
     ]
   },
-  "src/routes/card/[uid].svelte": {
-    "file": "pages/card/_uid_.svelte-8a19163e.js",
-    "src": "src/routes/card/[uid].svelte",
+  "src/routes/card/[setId]-[cardId].svelte": {
+    "file": "pages/card/_setId_-_cardId_.svelte-d3e7fc2e.js",
+    "src": "src/routes/card/[setId]-[cardId].svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_vendor-df654c82.js",
       "_stores-8be64ce6.js",
-      "_PokemonCard-547f9c3a.js",
-      "_pokemon-2349368c.js",
-      "_paths-4b3c6e7e.js"
+      "_paths-4b3c6e7e.js",
+      "_PokemonCard-6d7848a8.js",
+      "_Headline.svelte_svelte_type_style_lang-47de378a.js",
+      "_pokemon-a770bac3.js"
     ],
     "css": [
-      "assets/Pokeball.svelte_svelte_type_style_lang-59115f93.css"
+      "assets/pages/card/_setId_-_cardId_.svelte-1cfe0f05.css"
     ]
   },
   "src/routes/set/[uid].svelte": {
-    "file": "pages/set/_uid_.svelte-5587f6b7.js",
+    "file": "pages/set/_uid_.svelte-5e2cecbe.js",
     "src": "src/routes/set/[uid].svelte",
     "isEntry": true,
     "isDynamicEntry": true,
@@ -108,14 +104,13 @@
       "_vendor-df654c82.js",
       "_stores-8be64ce6.js",
       "_paths-4b3c6e7e.js",
-      "_PokemonCard-547f9c3a.js",
+      "_pokemon-a770bac3.js",
+      "_PokemonCard-6d7848a8.js",
       "_Tiltable-03cf46c8.js",
-      "_pokemon-2349368c.js",
-      "_Headline-6415203f.js",
-      "_Headline.svelte_svelte_type_style_lang-68fb4a89.js"
+      "_Headline.svelte_svelte_type_style_lang-47de378a.js"
     ],
     "css": [
-      "assets/Pokeball.svelte_svelte_type_style_lang-59115f93.css"
+      "assets/pages/set/_uid_.svelte-e841d686.css"
     ]
   },
   "_vendor-df654c82.js": {
@@ -124,30 +119,31 @@
   "_paths-4b3c6e7e.js": {
     "file": "chunks/paths-4b3c6e7e.js"
   },
-  "_Headline.svelte_svelte_type_style_lang-68fb4a89.js": {
-    "file": "chunks/Headline.svelte_svelte_type_style_lang-68fb4a89.js",
+  "_Headline.svelte_svelte_type_style_lang-47de378a.js": {
+    "file": "chunks/Headline.svelte_svelte_type_style_lang-47de378a.js",
     "imports": [
       "_vendor-df654c82.js"
     ],
     "css": [
-      "assets/Headline.svelte_svelte_type_style_lang-9c8746c9.css"
+      "assets/Headline.svelte_svelte_type_style_lang-fca72552.css"
     ]
   },
-  "_Book-459efd8c.js": {
-    "file": "chunks/Book-459efd8c.js",
+  "_Book.svelte_svelte_type_style_lang-12460f86.js": {
+    "file": "chunks/Book.svelte_svelte_type_style_lang-12460f86.js",
     "imports": [
       "_vendor-df654c82.js"
     ],
     "css": [
-      "assets/Book-1a815c89.css"
+      "assets/Book.svelte_svelte_type_style_lang-3ce5173f.css",
+      "assets/SetBox.svelte_svelte_type_style_lang-ddc1498f.css"
     ]
   },
-  "_PokemonCard-547f9c3a.js": {
-    "file": "chunks/PokemonCard-547f9c3a.js",
+  "_PokemonCard-6d7848a8.js": {
+    "file": "chunks/PokemonCard-6d7848a8.js",
     "imports": [
       "_vendor-df654c82.js",
       "_paths-4b3c6e7e.js",
-      "_pokemon-2349368c.js"
+      "_pokemon-a770bac3.js"
     ],
     "css": [
       "assets/PokemonCard-4cc9c153.css"
@@ -162,21 +158,14 @@
       "assets/Tiltable-060291f7.css"
     ]
   },
-  "_Headline-6415203f.js": {
-    "file": "chunks/Headline-6415203f.js",
+  "_pokemon-a770bac3.js": {
+    "file": "chunks/pokemon-a770bac3.js",
     "imports": [
       "_vendor-df654c82.js",
-      "_Headline.svelte_svelte_type_style_lang-68fb4a89.js"
-    ]
-  },
-  "_pokemon-2349368c.js": {
-    "file": "chunks/pokemon-2349368c.js",
-    "imports": [
-      "_vendor-df654c82.js"
+      "_Headline.svelte_svelte_type_style_lang-47de378a.js"
     ],
     "css": [
-      "assets/pokemon-a8826369.css",
-      "assets/Pokeball.svelte_svelte_type_style_lang-59115f93.css"
+      "assets/pokemon-ad22a663.css"
     ]
   },
   "_stores-8be64ce6.js": {
