@@ -131,6 +131,7 @@
         flex-direction: column;
         position: sticky;
         width: 100vw;
+        z-index: 100;
     }
 
     .grid {

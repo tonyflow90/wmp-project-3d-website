@@ -1,7 +1,11 @@
 <script>
     import { onMount } from "svelte";
 
+    import { fly, fade } from "svelte/transition";
+
     import { base } from "$app/paths";
+
+    import Error from "$lib/components/Error.svelte";
 
     onMount(() => {});
 
@@ -32,14 +36,25 @@
             {#await preload(data.images.large)}
                 <LoadingIndicator />
             {:then src}
-                <img src={data.images.large} alt={data.name} />
+                <img
+                    in:fade={{
+                        duration: 500,
+                    }}
+                    src={data.images.large}
+                    alt={data.name}
+                />
             {:catch error}
-                <p style="color: red">{error.message}</p>
+                <Error message={error.message} />
+                <!-- <p style="color: red">{error.message}</p> -->
             {/await}
         </div>
         <div class="card__face card--back">
             <img src="{base}/images/cards/base1_back.png" alt={data.name} />
         </div>
+        <div class="card__side card--right" />
+        <div class="card__side card--left" />
+        <div class="card__side card--top" />
+        <div class="card__side card--bottom " />
     </div>
     {#if shadow}
         <div id="shadow" />
@@ -49,8 +64,9 @@
 <style>
     :root {
         --calc-size-width: calc(var(--size) / 16 * 9);
-        --height: var(--size, 400px);
-        --width: var(--calc-size-width, 300px);
+        --card-size-y: var(--size, 400px);
+        --card-size-x: var(--calc-size-width, 300px);
+        --card-size-z: 2px;
         --bg-color: grey;
     }
 
@@ -64,38 +80,30 @@
     }
 
     .card {
-        height: var(--height);
-        width: var(--width);
-        margin: calc(var(--height) * 0.02);
+        height: var(--card-size-y);
+        width: var(--card-size-x);
+        margin: calc(var(--card-size-y) * 0.02);
         position: relative;
         transition: transform 1s;
         transform-style: preserve-3d;
-    }
-
-    #shadow {
-        content: "";
-        top: var(--height);
-        height: calc(var(--height) / 2);
-        width: var(--width);
-        transform: rotateX(-75deg) rotateZ(15deg);
-        position: fixed;
-        z-index: -1;
-        background-color: rgb(0, 0, 0);
-        border-radius: calc(var(--height) / 4);
-        opacity: 0.05;
+        /* transform: rotateX(45deg) */
     }
 
     img {
-        height: var(--height);
-        width: var(--width);
+        height: var(--card-size-y);
+        width: var(--card-size-x);
     }
 
     .card__face {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: absolute;
         height: 100%;
         width: 100%;
         backface-visibility: hidden;
         border-radius: 10px;
+        background-color: lightgray;
         overflow: hidden;
     }
 
@@ -104,7 +112,55 @@
     }
 
     .card--back {
-        transform: rotateY(180deg);
-        z-index: 1;
+        transform: rotateY(180deg) translateZ(calc(var(--card-size-z)));
+    }
+
+    .card__side {
+        position: absolute;
+        height: 100%;
+        width: var(--card-size-z);
+        /* backface-visibility: hidden;
+        border-radius: 10px; */
+        background-color: gray;
+        /* overflow: hidden; */
+    }
+
+    /* .card--left {
+        background-color: green;
+        transform: rotateY(90deg) translateZ(-20px);
+    }
+
+    .card--right {
+        background-color: red;
+        transform: rotateY(-90deg) translateZ(-20px);
+    } */
+
+    .card--right {
+        width: var(--card-size-z);
+        height: calc(var(--card-size-y) - 20px);
+        transform: rotateY(90deg)
+            translateZ(calc(var(--card-size-x) - var(--card-size-z) / 2))
+            translateX(calc(var(--card-size-z) / 2)) translateY(calc(10px));
+        /* transform: rotateY(90deg)
+            translateZ(calc(var(--card-size-x) - var(--card-size-z) )); */
+    }
+    .card--left {
+        width: var(--card-size-z);
+        height: var(--card-size-y);
+        transform: rotateY(-90deg) translateZ(calc(var(--card-size-z) / 2))
+            translateX(calc(var(--card-size-z) / -2));
+    }
+    .card--top {
+        width: var(--card-size-x);
+        height: var(--card-size-z);
+        transform: rotateX(90deg) translateZ(calc(var(--card-size-z) / 2))
+            translateY(calc(var(--card-size-z) * -0.5));
+    }
+    .card--bottom {
+        width: var(--card-size-x);
+        height: var(--card-size-z);
+        transform: rotateX(-90deg)
+            translateZ(calc(var(--card-size-y) - var(--card-size-z) / 2))
+            translateY(calc(var(--card-size-z) * 0.5));
     }
 </style>

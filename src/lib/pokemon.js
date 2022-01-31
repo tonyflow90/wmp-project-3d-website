@@ -112,17 +112,18 @@ let getAllCards = async (setId) => {
 
 let getRandomCards = async (count = 1) => {
     return new Promise(async (resolve, reject) => {
-
-        let randomSets = await getRandomSets(count);
-
-        let cardp = [];
-        randomSets.forEach(set => {
-            let randomNumber = Math.floor(Math.random() * set.printedTotal);
-            let cardId = `${set.id}-${randomNumber}`;
-            cardp.push(getCard(cardId));
-        });
-
-        resolve(cardp);
+        try {
+            let randomSets = await getRandomSets(count);
+            let cardp = [];
+            randomSets.forEach(set => {
+                let randomNumber = Math.floor(Math.random() * set.printedTotal);
+                let cardId = `${set.id}-${randomNumber}`;
+                cardp.push(getCard(cardId));
+            });
+            resolve(cardp);
+        } catch (e) {
+            reject(e);
+        }
     });
 };
 

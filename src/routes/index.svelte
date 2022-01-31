@@ -5,18 +5,15 @@
 
     import { base } from "$app/paths";
 
-    import Book from "$lib/components/Book.svelte";
-    import Box from "$lib/components/Box.svelte";
-    import CardBox from "$lib/components/CardBox.svelte";
+    import Page from "$lib/components/Page.svelte";
+    import Error from "$lib/components/Error.svelte";
     import SetBox from "$lib/components/SetBox.svelte";
     import PokemonCard from "$lib/components/PokemonCard.svelte";
-    import Trapezoid from "$lib/components/Trapezoid.svelte";
-    import Pokeball from "$lib/components/Pokeball.svelte";
     import Tiltable from "$lib/components/Tiltable.svelte";
     import Headline from "$lib/components/Headline.svelte";
+    import LoadingIndicator from "$lib/components/LoadingIndicator.svelte";
 
     import pokemon from "$lib/pokemon.js";
-    import LoadingIndicator from "$lib/components/LoadingIndicator.svelte";
 
     onMount(async () => {});
 
@@ -31,24 +28,18 @@
         return color;
     };
 
-    let randomHueColor = () => {
-        const hueColors = [...Array(12).keys()].map((x) => (x + 1) * 30);
-        var hueColor = hueColors[Math.floor(Math.random() * hueColors.length)];
-        return hueColor;
-    };
-
     let loadRandomSets = () => {
-        return pokemon.getRandomSets(3);
+        return pokemon.getRandomSets(6);
     };
 
     let loadRandomCards = () => {
-        return pokemon.getRandomCards(3);
+        return pokemon.getRandomCards(6);
     };
 
     let bookHeight = 400,
         bookWidth = bookHeight * (3 / 4);
 
-    let cardHeight = 500,
+    let cardHeight = 300,
         cardWidth = cardHeight * (9 / 16);
 
     let randomCardsText = "Random Cards";
@@ -58,16 +49,8 @@
 <svelte:head>
     <title>{title}</title>
 </svelte:head>
+
 <!-- <div
-                            in:fly={{
-                                x: index * -1 * cardWidth,
-                                y: (index / 6) * 1 * cardHeight,
-                                opacity: 1,
-                                duration: 1000,
-                            }}
-                            out:fade
-                        > -->
-<div
     class="content"
     in:fly={{
         y: -500,
@@ -77,7 +60,9 @@
         y: 500,
         duration: 1000,
     }}
->
+> -->
+
+<Page>
     <Headline --hue="165">
         {randomSetsText}
     </Headline>
@@ -92,118 +77,93 @@
             <div class="grid">
                 {#each aSet as set}
                     <a href="{base}/set/{set.id}">
-                        <Book
-                            --height={`${bookHeight}px`}
-                            --width={`${bookWidth}px`}
-                            --bg-color={randomColor()}
-                        >
-                            <div slot="cover-front">
-                                <img
-                                    style={`width:${
-                                        bookWidth - bookWidth * 0.5
-                                    }px; height:${bookWidth * 0.5}px;`}
-                                    src={set.images.logo}
-                                    alt={set.name}
-                                />
-                                <h2>
-                                    <span>{set.name}</span>
-                                </h2>
-                                <span>{set.series}</span>
-                            </div>
-                        </Book>
+                        <SetBox {set} />
                     </a>
                 {/each}
             </div>
         {/if}
     {:catch error}
-        <p style="color: red">{error.message}</p>
+        <Error message={error.message} />
     {/await}
 
     <div class="randomCards">
-        <Trapezoid top srcImage --hue="20">
-            <Headline --hue="265">
-                {randomCardsText}
-            </Headline>
+        <Headline --hue="265">
+            {randomCardsText}
+        </Headline>
 
-            {#await loadRandomCards()}
-                <LoadingIndicator
-                    --height={`${cardHeight}px`}
-                    --width={`${cardWidth}px`}
-                />
-            {:then promises}
-                <div class="grid">
-                    {#each promises as item, index}
-                        {#await item}
-                            <LoadingIndicator
-                                --height={`${cardHeight}px`}
-                                --width={`${cardWidth}px`}
-                            />
-                        {:then card}
-                            {#if card}
-                                <div
-                                    in:fade={{
-                                        duration: 500,
-                                    }}
-                                    out:fade
-                                >
-                                    <Tiltable>
-                                        <a href="{base}/card/{card.id}">
-                                            <PokemonCard
-                                                data={card}
-                                                --height={`${cardHeight}px`}
-                                                --width={`${cardWidth}px`}
-                                            />
-                                        </a>
-                                    </Tiltable>
-                                </div>
-                            {/if}
-                        {:catch error}
-                            <p style="color: red">{error.message}</p>
-                        {/await}
-                    {/each}
-                </div>
-            {:catch error}
-                <p style="color: red">{error.message}</p>
-            {/await}
-        </Trapezoid>
+        {#await loadRandomCards()}
+            <LoadingIndicator
+                --height={`${cardHeight}px`}
+                --width={`${cardWidth}px`}
+            />
+        {:then promises}
+            <div class="grid">
+                {#each promises as item}
+                    {#await item}
+                        <LoadingIndicator
+                            --height={`${cardHeight}px`}
+                            --width={`${cardWidth}px`}
+                        />
+                    {:then card}
+                        {#if card}
+                            <div
+                                in:fade={{
+                                    duration: 500,
+                                }}
+                                out:fade
+                            >
+                                <Tiltable>
+                                    <a href="{base}/card/{card.id}">
+                                        <PokemonCard
+                                            data={card}
+                                            --card-size-y={`${cardHeight}px`}
+                                            --card-size-x={`${cardWidth}px`}
+                                        />
+                                    </a>
+                                </Tiltable>
+                            </div>
+                        {/if}
+                    {:catch error}
+                        <Error message={error.message} />
+                    {/await}
+                {/each}
+            </div>
+        {:catch error}
+            <Error message={error.message} />
+        {/await}
     </div>
-</div>
+</Page>
 
+<!-- </div> -->
 <style>
     .content {
         display: flex;
         flex-direction: column;
-        /* justify-content: center; */
         align-items: center;
-    }
-
-    .content {
-        background-color: #fcffd5;
-        background-image: url("/images/pokeballs/pokeballs_2.svg");
     }
 
     .randomCards {
         display: flex;
         flex-direction: column;
-        /* justify-content: center; */
-        /* align-items: center; */
+        justify-content: center;
+        align-items: center;
         width: 100vw;
     }
 
     .grid {
-        min-height: 600px;
-        grid-template-columns: repeat(3, 1fr);
+        min-height: 400px;
+        grid-template-columns: repeat(6, 1fr);
     }
 
     @media only screen and (max-width: 1600px) {
         .grid {
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(6, 1fr);
         }
     }
 
     @media only screen and (max-width: 900px) {
         .grid {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
         }
     }
 

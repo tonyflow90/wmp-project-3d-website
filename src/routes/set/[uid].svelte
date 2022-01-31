@@ -5,6 +5,9 @@
     import { page } from "$app/stores";
     import { base } from "$app/paths";
 
+    import Page from "$lib/components/Page.svelte";
+    import Error from "$lib/components/Error.svelte";
+
     import PokemonCard from "$lib/components/PokemonCard.svelte";
     import Tiltable from "$lib/components/Tiltable.svelte";
 
@@ -16,50 +19,47 @@
 
     let set;
 
-    onMount(async () => {
-        set = loadSet();
+    onMount(() => {
+        loadSet();
     });
 
     let loadSet = async () => {
-        return await pokemon.getSet(setId);
+        set = await pokemon.getSet(setId);
     };
 
     let loadCards = async () => {
         return pokemon.getAllCardsp(setId);
     };
 
-    let deb = (c, index) => {
-        let gridX = setGrid.getBoundingClientRect().x;
-        let cardX = c.getBoundingClientRect().x;
-        console.log(gridX, cardX);
-    };
-
     $: title = set ? `${set.name} Set` : "Set";
+    $: text = set != undefined ? `${set.name} Set - All Cards` : "All Cards";
 
-    let cardHeight = 600,
+    let cardHeight = 300,
         cardWidth = cardHeight * (9 / 16);
-
-    let text = "All Cards";
 </script>
 
 <svelte:head>
     <title>{title}</title>
 </svelte:head>
 
-<div
-    class="content"
-    in:fly={{
-        y: 500,
-        duration: 1000,
-    }}
-    out:fly={{
-        y: 500,
-        duration: 500,
-    }}
->
-    <Headline {text} --hue="165" />
+<Page>
+    <Headline --hue="165">
+        {text}
+    </Headline>
 
-    <div id="setGrid" class="grid">
+    <div
+        id="setGrid"
+        class="grid"
+        in:fly={{
+            x: 900,
+            duration: 500,
+            delay: 700,
+        }}
+        out:fly={{
+            x: 300,
+            duration: 500,
+        }}
+    >
         {#await loadCards()}
             <LoadingIndicator
                 --height={`${cardHeight}px`}
@@ -67,24 +67,26 @@
             />
         {:then promises}
             {#each promises as item, index}
-                {#await item}
+                <!-- {#await item}
                     <LoadingIndicator
                         --height={`${cardHeight}px`}
                         --width={`${cardWidth}px`}
                     />
-                {:then card}
+                {:then card} -->
+                {#await item then card}
                     {#if card}
                         <!-- <div
-                            in:fly={{
-                                x: index * -1 * cardWidth,
-                                y: (index / 6) * 1 * cardHeight,
-                                opacity: 1,
+                            in:fade={{
                                 duration: 1000,
                             }}
                             out:fade
                         > -->
                         <div
-                            in:fade={{
+                            in:fly={{
+                                y: -4000,
+                                x: -900,
+                                opacity: 1,
+                                delay:700,
                                 duration: 1000,
                             }}
                             out:fade
@@ -93,22 +95,44 @@
                                 <a href="{base}/card/{card.id}">
                                     <PokemonCard
                                         data={card}
-                                        --height={`${cardHeight}px`}
-                                        --width={`${cardWidth}px`}
+                                        --card-size-y={`${cardHeight}px`}
+                                        --card-size-x={`${cardWidth}px`}
                                     />
                                 </a>
                             </Tiltable>
                         </div>
                     {/if}
                 {:catch error}
-                    <p style="color: red">{error.message}</p>
+                    <Error message={error.message} />
                 {/await}
             {/each}
         {:catch error}
-            <p style="color: red">{error.message}</p>
+            <Error message={error.message} />
         {/await}
     </div>
-</div>
+</Page>
 
 <style>
+    .grid {
+        min-height: 300px;
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    @media only screen and (max-width: 1600px) {
+        .grid {
+            grid-template-columns: repeat(6, 1fr);
+        }
+    }
+
+    @media only screen and (max-width: 900px) {
+        .grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+        .grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
 </style>

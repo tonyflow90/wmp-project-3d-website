@@ -1,7 +1,11 @@
 <script>
     export let top = false;
     export let bottom = false;
-    export let srcImage = false;
+    export let srcImage;
+
+    $: srcImage => {
+        console.log(srcImage);
+    }
 </script>
 
 {#if top}
@@ -37,7 +41,7 @@
     }
 
     .background-image {
-        background-image: url("/images/pokemon/pokemonset_2.svg");
+        background-image: url("{srcImage}");
     }
 
     .trapezoid-content {
@@ -47,6 +51,7 @@
         text-align: center;
         background-color: var(--color-lighten);
         width: inherit;
+        padding: 10px;
         color: var(--color-darken);
     }
 

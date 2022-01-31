@@ -21,7 +21,8 @@
     }
 
     .headline {
-        width: var(--headline-width, 600px);
+        width: 100%;
+        max-width: var(--headline-width);
         padding-bottom: calc(var(--headline-width) * 0.04);
         padding-top: calc(var(--headline-width) * 0.06);
     }
@@ -51,19 +52,19 @@
 
     @media only screen and (max-width: 1600px) {
         .headline {
-            width: 600px;
+            max-width: 600px;
         }
     }
 
     @media only screen and (max-width: 900px) {
         .headline {
-            width: 500px;
+            max-width: 500px;
         }
     }
 
     @media only screen and (max-width: 600px) {
         .headline {
-            width: 300px;
+            max-width: 300px;
         }
     }
 </style>

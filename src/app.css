@@ -90,6 +90,19 @@ a:active {
   align-items: center;
 }
 
+header {
+  min-height: 15vh;
+}
+
+main {
+  min-height: 65vh;
+  padding: 50px 0px;
+}
+
+footer {
+  min-height: 15vh;
+}
+
 @media only screen and (max-width: 1600px) {
   .grid {
     display: grid;

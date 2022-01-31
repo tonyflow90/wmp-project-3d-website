@@ -14,7 +14,7 @@
 
 <style>
     :root {
-        --size: 200px;
+        --pokeball-size: 200px;
     }
 
     *,
@@ -27,14 +27,14 @@
 
     .pokeball {
         position: relative;
-        width: var(--size);
-        height: var(--size);
+        width: var(--pokeball-size);
+        height: var(--pokeball-size);
         background: #fff;
-        border: calc(var(--size) * 0.05) solid #000;
+        border: calc(var(--pokeball-size) * 0.05) solid #000;
         border-radius: 50%;
         overflow: hidden;
-        box-shadow: inset calc(var(--size) * 0.05 * -1) calc(var(--size) * 0.05)
-            0 calc(var(--size) * 0.05) #ccc;
+        box-shadow: inset calc(var(--pokeball-size) * 0.05 * -1) calc(var(--pokeball-size) * 0.05)
+            0 calc(var(--pokeball-size) * 0.05) #ccc;
         /* animation: shake 1.25s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite; */
     }
 
@@ -58,7 +58,7 @@
     .pokeball::after {
         top: calc(50%);
         width: 100%;
-        height: calc(var(--size) * 0.1);
+        height: calc(var(--pokeball-size) * 0.1);
         background: #000;
         bottom: 0;
         left: 0;
@@ -67,15 +67,15 @@
 
     .pokeball__button {
         position: absolute;
-        top: calc(50% - calc(var(--size) * 0.1));
-        left: calc(50% - calc(var(--size) * 0.1));
-        width: calc(var(--size) * 0.2);
-        height: calc(var(--size) * 0.2);
+        top: calc(50% - calc(var(--pokeball-size) * 0.1));
+        left: calc(50% - calc(var(--pokeball-size) * 0.1));
+        width: calc(var(--pokeball-size) * 0.2);
+        height: calc(var(--pokeball-size) * 0.2);
         background: #7f8c8d;
-        border: calc(var(--size) * 0.05) solid #fff;
+        border: calc(var(--pokeball-size) * 0.05) solid #fff;
         border-radius: 50%;
         z-index: 10;
-        box-shadow: 0 0 0 calc(var(--size) * 0.05) black;
+        box-shadow: 0 0 0 calc(var(--pokeball-size) * 0.05) black;
     }
 
     .blink {

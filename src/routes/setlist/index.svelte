@@ -1,18 +1,16 @@
 <script>
     import { onMount } from "svelte";
 
-    import { fly, fade } from "svelte/transition";
+    import { fly } from "svelte/transition";
 
-
-    import Book from "$lib/components/Book.svelte";
-
-    import { page } from "$app/stores";
+    import Error from "$lib/components/Error.svelte";
 
     import { base } from "$app/paths";
 
-    import { routes } from "$lib/routes";
-
     import pokemon from "$lib/pokemon.js";
+
+
+    import Page from "$lib/components/Page.svelte";
     import SetBox from "$lib/components/SetBox.svelte";
     import LoadingIndicator from "$lib/components/LoadingIndicator.svelte";
     import Headline from "$lib/components/Headline.svelte";
@@ -49,17 +47,7 @@
     <title>{title}</title>
 </svelte:head>
 
-<div
-    class="content"
-    in:fly={{
-        y: -500,
-        duration: 1000,
-    }}
-    out:fly={{
-        y: 500,
-        duration: 1000,
-    }}
->
+<Page>
     <Headline --hue="165">
         {text}
     </Headline>
@@ -74,47 +62,15 @@
             <div class="grid">
                 {#each aSet as set}
                     <a href="{base}/set/{set.id}">
-                        <!-- <SetBox size="300" darkenLeft darkenBottom>
-                            <img
-                                style={`width:${
-                                    bookWidth - bookWidth * 0.5
-                                }px; height:${bookWidth * 0.5}px;`}
-                                src={set.images.logo}
-                                alt={set.name}
-                            />
-                            <h2>
-                                <span>{set.name}</span>
-                            </h2>
-                            <span>{set.series}</span>
-                        </SetBox> -->
-                        <Book
-                            on:click={openSet}
-                            --height={`${bookHeight}px`}
-                            --width={`${bookWidth}px`}
-                            --bg-color={randomColor()}
-                        >
-                            <div slot="cover-front">
-                                <img
-                                    style={`width:${
-                                        bookWidth - bookWidth * 0.5
-                                    }px; height:${bookWidth * 0.5}px;`}
-                                    src={set.images.logo}
-                                    alt={set.name}
-                                />
-                                <h2>
-                                    <span>{set.name}</span>
-                                </h2>
-                                <span>{set.series}</span>
-                            </div>
-                        </Book>
+                        <SetBox {set} />
                     </a>
                 {/each}
             </div>
         {/if}
     {:catch error}
-        <p style="color: red">{error.message}</p>
+        <Error message={error.message} />
     {/await}
-</div>
+</Page>
 
 <style>
     .content {
