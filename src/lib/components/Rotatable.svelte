@@ -9,45 +9,58 @@
     let rotatable;
 
     let addListener = (e) => {
+        // console.log("add Listener");
+        currentX = e.clientX;
+        currentY = e.clientY;
         window.document.addEventListener("pointermove", move);
         window.document.addEventListener("touchmove", move);
     };
 
     let removeListener = () => {
+        // console.log("remove Listener");
+        (currentX = 0), (currentY = 0);
         window.document.removeEventListener("pointermove", move);
         window.document.removeEventListener("touchmove", move);
     };
 
     let move = (e) => {
-        let clientX = e.clientX,
-            clientY = e.clientY;
         if (rotatable) {
             rotate(e);
-            // let { x, y } = rotatable.getBoundingClientRect();
-            // debugger;
-            // console.log(e);
         }
     };
 
     let rotate = (e) => {
-        let { x, y } = rotatable.getBoundingClientRect();
-        // let { degX, degY } = getAngleXY();
-        // console.log(degY);
+        let x = e.clientX;
+        let y = e.clientY;
         var st = window.getComputedStyle(rotatable, null);
 
         window.requestAnimationFrame(function () {
             let rotateLeft;
+
             if (currentX < x) rotateLeft = true;
             else rotateLeft = false;
 
-            console.log("clientX < x = ", rotateLeft);
 
-            if (rotateLeft) angle = angle + 2;
-            else angle = angle - 2;
+            if (rotateLeft) angle = angle + 1;
+            else angle = angle - 1;
+
+            // // let skewAngle = angle % 90 * -.1;
+            // let absoluteAngle = Math.abs(angle);
+
+            // let h = 1;
+            // if (absoluteAngle <= 90) {
+            //     h=h*-1;
+            // }
+            // let skewAngle = (angle % 90) * 0.1 * h;
+            // console.log("Angle: ", angle, "skewAngle: ", skewAngle);
+            // rotatable.style.transform = `rotateY(${angle}deg) skew(0deg,${skewAngle}deg)`;
+
             rotatable.style.transform = `rotateY(${angle}deg)`;
+
+            currentX = x;
+            currentY = y;
         });
     };
-
 </script>
 
 <div
@@ -71,13 +84,13 @@
     #rotatable {
         cursor: grab;
         transform-style: preserve-3d;
-        transform: rotate(0);
         transition: all 0.1s;
     }
 
     .spin {
+        perspective: 500px;
         transform-style: preserve-3d;
-        animation: spin 4s ease-in-out .5s 1;
+        animation: spin 4s ease-in-out 0.5s 1;
     }
 
     @-moz-keyframes spin {

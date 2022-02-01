@@ -16,11 +16,11 @@
 <style>
     .container {
         transform-style: preserve-3d;
+        animation: tilt 5s linear 1;
     }
 
     .container:hover {
-        transform-style: preserve-3d;
-        animation: tilt 5s linear 1;
+        animation: tilt 5s linear infinite;
     }
 
     @-moz-keyframes spin {

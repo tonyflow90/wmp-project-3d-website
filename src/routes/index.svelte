@@ -19,15 +19,6 @@
 
     let title = "Home";
 
-    let randomColor = () => {
-        var letters = "0123456789ABCDEF";
-        var color = "#";
-        for (var i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    };
-
     let loadRandomSets = () => {
         return pokemon.getRandomSets(6);
     };
@@ -49,18 +40,6 @@
 <svelte:head>
     <title>{title}</title>
 </svelte:head>
-
-<!-- <div
-    class="content"
-    in:fly={{
-        y: -500,
-        duration: 1000,
-    }}
-    out:fly={{
-        y: 500,
-        duration: 1000,
-    }}
-> -->
 
 <Page>
     <Headline --hue="165">
@@ -97,7 +76,7 @@
                 --width={`${cardWidth}px`}
             />
         {:then promises}
-            <div class="grid">
+            <div class="card-grid">
                 {#each promises as item}
                     {#await item}
                         <LoadingIndicator
@@ -134,7 +113,6 @@
     </div>
 </Page>
 
-<!-- </div> -->
 <style>
     .content {
         display: flex;
@@ -151,6 +129,7 @@
     }
 
     .grid {
+        display: grid;
         min-height: 400px;
         grid-template-columns: repeat(6, 1fr);
     }
@@ -170,6 +149,30 @@
     @media only screen and (max-width: 600px) {
         .grid {
             grid-template-columns: repeat(1, 1fr);
+        }
+    }
+
+    .card-grid {
+        display: grid;
+        min-height: 300px;
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    @media only screen and (max-width: 1600px) {
+        .card-grid {
+            grid-template-columns: repeat(6, 1fr);
+        }
+    }
+
+    @media only screen and (max-width: 900px) {
+        .card-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+        .card-grid {
+            grid-template-columns: repeat(2, 1fr);
         }
     }
 </style>

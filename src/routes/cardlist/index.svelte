@@ -15,25 +15,15 @@
     import Headline from "$lib/components/Headline.svelte";
     import LoadingIndicator from "$lib/components/LoadingIndicator.svelte";
 
-    const setId = $page.params.uid;
-
-    let set;
-
-    onMount(() => {
-        loadSet();
-    });
-
-    let loadSet = async () => {
-        set = await pokemon.getSet(setId);
-    };
+    onMount(() => {});
 
     let loadCards = async () => {
-        return pokemon.getAllSetCards(setId);
+        let cards = await pokemon.getAllCards();
+        debugger;
+        return pokemon.getAllCards();
     };
 
-    $: title = set ? `${set.name} Set` : "Set";
-    $: text = set != undefined ? `${set.name} Set - All Cards` : "All Cards";
-
+    let title = "All Cards";
     let cardHeight = 300,
         cardWidth = cardHeight * (9 / 16);
 </script>
@@ -44,28 +34,28 @@
 
 <Page>
     <Headline --hue="165">
-        {text}
+        {title}
     </Headline>
 
-    {#await loadCards()}
-        <LoadingIndicator
-            --height={`${cardHeight}px`}
-            --width={`${cardWidth}px`}
-        />
-    {:then promises}
-        <div
-            id="setGrid"
-            class="grid"
-            in:fly={{
-                x: 900,
-                duration: 500,
-                delay: 700,
-            }}
-            out:fly={{
-                x: 300,
-                duration: 500,
-            }}
-        >
+    <div
+        id="setGrid"
+        class="grid"
+        in:fly={{
+            x: 900,
+            duration: 500,
+            delay: 700,
+        }}
+        out:fly={{
+            x: 300,
+            duration: 500,
+        }}
+    >
+        {#await loadCards()}
+            <LoadingIndicator
+                --height={`${cardHeight}px`}
+                --width={`${cardWidth}px`}
+            />
+        {:then promises}
             {#each promises as item, index}
                 {#await item then card}
                     {#if card}
@@ -94,10 +84,10 @@
                     <Error message={error.message} />
                 {/await}
             {/each}
-        </div>
-    {:catch error}
-        <Error message={error.message} />
-    {/await}
+        {:catch error}
+            <Error message={error.message} />
+        {/await}
+    </div>
 </Page>
 
 <style>
