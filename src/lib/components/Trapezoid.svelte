@@ -1,7 +1,6 @@
 <script>
     export let top = false;
     export let bottom = false;
-    export let srcImage;
 
     $: srcImage => {
         console.log(srcImage);
@@ -11,7 +10,7 @@
 {#if top}
     <div class="trapezoid-top" />
 {/if}
-<div class="trapezoid-content {srcImage ? 'background-image' : ''}">
+<div class="trapezoid-content">
     <slot />
 </div>
 {#if bottom}

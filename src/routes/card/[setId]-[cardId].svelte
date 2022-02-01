@@ -67,24 +67,27 @@
 
             <div class="data-grid">
                 <div class="data-grid-element details">
-                    <Trapezoid top bottom --hue="200">
-                        <Headline --hue="265">Details</Headline>
+                    <Trapezoid top bottom --hue="20">
+                        <!-- <Headline --hue="265">Details</Headline> -->
+                        <h1>Details</h1>
 
                         <LoadingIndicator />
                     </Trapezoid>
                 </div>
 
                 <div class="data-grid-element stats">
-                    <Trapezoid top bottom --hue="20">
-                        <Headline --hue="265">Stats</Headline>
+                    <Trapezoid top bottom --hue="60">
+                        <!-- <Headline --hue="265">Stats</Headline> -->
+                        <h1>Stats</h1>
 
                         <LoadingIndicator />
                     </Trapezoid>
                 </div>
 
                 <div class="data-grid-element card-info">
-                    <Trapezoid top bottom --hue="20">
-                        <Headline --hue="265">Card Info</Headline>
+                    <Trapezoid top bottom --hue="100">
+                        <!-- <Headline --hue="265">Card Info</Headline> -->
+                        <h1>Card Info</h1>
 
                         <LoadingIndicator />
                     </Trapezoid>
@@ -99,9 +102,6 @@
 <style>
     #shadow {
         content: "";
-        /* position: relative; */
-        /* height: calc(var(--card-size-y) / 2);
-        width: calc(var(--card-size-x)); */
         transform: translateY(calc(var(--card-size-y) * -0.1)) rotateX(-75deg)
             rotateZ(15deg);
         z-index: -1;

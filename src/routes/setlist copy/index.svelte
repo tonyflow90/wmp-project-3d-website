@@ -14,14 +14,15 @@
     import LoadingIndicator from "$lib/components/LoadingIndicator.svelte";
     import Headline from "$lib/components/Headline.svelte";
 
-    onMount(async () => {});
+    onMount(async () => {
+    });
 
-    let title = "All Sets";
+    let title = "All Cards";
 
     let bookHeight = 400,
         bookWidth = bookHeight * (3 / 4);
 
-    let text = "All Sets";
+    let text = "All Cards";
 </script>
 
 <svelte:head>

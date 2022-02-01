@@ -3,10 +3,43 @@
 
     onMount(() => {});
 
-    let randomHueColor = () => {
-        const hueColors = [...Array(12).keys()].map((x) => (x + 1) * 30);
-        var hueColor = hueColors[Math.floor(Math.random() * hueColors.length)];
-        return hueColor;
+    const sets = [
+        "Base",
+        "Gym",
+        "Neo",
+        "Other",
+        "E-Card",
+        "EX",
+        "NP",
+        "POP",
+        "Diamond & Pearl",
+        "Platinum",
+        "HeartGold & SoulSilver",
+        "Black & White",
+        "XY",
+        "Sun & Moon",
+        "Sword & Shield",
+    ];
+
+    let getHueColors = () => {
+        const hueColors = [...Array(sets.length).keys()].map(
+            (x) => (x + 1) * (360 / sets.length)
+        );
+        let aColor = [];
+        sets.forEach((s, i) => {
+            aColor.push({ id: s, color: hueColors[i] });
+        });
+        return aColor;
+        // debugger;
+        // var hueColor = hueColors[Math.floor(Math.random() * hueColors.length)];
+        // return hueColor;
+    };
+
+    let colors = getHueColors();
+
+    let getSetColor = (id) => {
+        let obj = colors.find((c) => c.id == id);
+        return obj.color;
     };
 
     export let set;
@@ -14,7 +47,8 @@
     export let spin = false;
 </script>
 
-<div class="scene" style="--hue:{randomHueColor()}">
+<!-- <div class="scene" style="--hue:{randomHueColor()}"> -->
+<div class="scene" style="--hue:{getSetColor(set.series)}">
     <div class="cube {spin ? 'spin' : ''}">
         <div class="cube__face cube__face--front">
             <div class="setbox-grid">

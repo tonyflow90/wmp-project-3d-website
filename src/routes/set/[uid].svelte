@@ -67,39 +67,27 @@
             />
         {:then promises}
             {#each promises as item, index}
-                <!-- {#await item}
-                    <LoadingIndicator
-                        --height={`${cardHeight}px`}
-                        --width={`${cardWidth}px`}
-                    />
-                {:then card} -->
                 {#await item then card}
                     {#if card}
-                        <!-- <div
-                            in:fade={{
-                                duration: 1000,
-                            }}
-                            out:fade
-                        > -->
                         <div
                             in:fly={{
                                 y: -4000,
-                                x: -900,
+                                x: -4000,
                                 opacity: 1,
-                                delay:700,
+                                delay: 700,
                                 duration: 1000,
                             }}
                             out:fade
                         >
-                            <Tiltable>
-                                <a href="{base}/card/{card.id}">
+                            <a href="{base}/card/{card.id}">
+                                <Tiltable>
                                     <PokemonCard
                                         data={card}
                                         --card-size-y={`${cardHeight}px`}
                                         --card-size-x={`${cardWidth}px`}
                                     />
-                                </a>
-                            </Tiltable>
+                                </Tiltable>
+                            </a>
                         </div>
                     {/if}
                 {:catch error}

@@ -1,14 +1,14 @@
 import pokemon from "pokemontcgsdk";
 pokemon.configure({ apiKey: "2a30334b-5d51-4afd-b7fc-c999fb16ee61" });
 
-const sets = [
-    'base1',
-    'base2',
-    'basep',
-    'base3',
-    'base4',
-    'base5',
-];
+// const sets = [
+//     'base1',
+//     'base2',
+//     'basep',
+//     'base3',
+//     'base4',
+//     'base5',
+// ];
 
 let getAll = async () => {
     return new Promise(async (resolve, reject) => {
@@ -32,37 +32,60 @@ let getAll = async () => {
     });
 };
 
-let getAllSets = async (id) => {
-    return new Promise(async (resolve, reject) => {
+// let getAllSets2 = async () => {
+//     return new Promise(async (resolve, reject) => {
 
-        let setp = []
-        sets.forEach(set => {
-            setp.push(pokemon.set.find(set))
-        });
+//         let setp = []
+//         sets.forEach(set => {
+//             setp.push(pokemon.set.find(set))
+//         });
 
-        Promise.all(setp).then((sets) => {
-            resolve(sets);
-        }).catch(e => {
-            reject(e);
-        });
-    });
+//         Promise.all(setp).then((sets) => {
+//             resolve(sets);
+//         }).catch(e => {
+//             reject(e);
+//         });
+//     });
+// };
+
+let getAllSets = async () => {
+    return pokemon.set.all();
+    // return new Promise(async (resolve, reject) => {
+    // let setp = []
+    // sets.forEach(set => {
+    //     setp.push(pokemon.set.find(set))
+    // });
+
+    // Promise.all(setp).then((sets) => {
+    //     resolve(sets);
+    // }).catch(e => {
+    //     reject(e);
+    // });
+    // });
 };
 
 let getRandomSets = async (count = 1) => {
     return new Promise(async (resolve, reject) => {
 
-        let randomSets = sets.sort(() => Math.random() - Math.random()).slice(0, count)
-
-        let setp = []
-        randomSets.forEach(set => {
-            setp.push(pokemon.set.find(set))
-        });
-
-        Promise.all(setp).then((sets) => {
-            resolve(sets);
-        }).catch(e => {
+        try {
+            let sets = await getAllSets();
+            let randomSets = sets.sort(() => Math.random() - Math.random()).slice(0, count)
+            resolve(randomSets);
+        } catch (e) {
             reject(e);
-        });
+        }
+
+        // let setp = []
+        // randomSets.forEach(set => {
+        //     debugger;
+        //     setp.push(pokemon.set.find(set.id))
+        // });
+
+        // Promise.all(setp).then((sets) => {
+        //     resolve(sets);
+        // }).catch(e => {
+        //     reject(e);
+        // });
     });
 };
 
