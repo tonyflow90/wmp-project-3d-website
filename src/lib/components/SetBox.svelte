@@ -30,9 +30,6 @@
             aColor.push({ id: s, color: hueColors[i] });
         });
         return aColor;
-        // debugger;
-        // var hueColor = hueColors[Math.floor(Math.random() * hueColors.length)];
-        // return hueColor;
     };
 
     let colors = getHueColors();
@@ -47,7 +44,6 @@
     export let spin = false;
 </script>
 
-<!-- <div class="scene" style="--hue:{randomHueColor()}"> -->
 <div class="scene" style="--hue:{getSetColor(set.series)}">
     <div class="cube {spin ? 'spin' : ''}">
         <div class="cube__face cube__face--front">

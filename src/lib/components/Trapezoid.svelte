@@ -1,10 +1,6 @@
 <script>
     export let top = false;
     export let bottom = false;
-
-    $: srcImage => {
-        console.log(srcImage);
-    }
 </script>
 
 {#if top}

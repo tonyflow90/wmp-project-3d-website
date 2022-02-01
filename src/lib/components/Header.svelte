@@ -1,25 +1,11 @@
 <script>
     import { base } from "$app/paths";
-    import { goto } from "$app/navigation";
-    import { page } from "$app/stores";
-
-    import { routes } from "$lib/routes";
 
     import Box from "$lib/components/Box.svelte";
     import Trapezoid from "$lib/components/Trapezoid.svelte";
     import HeaderItem from "$lib/components/HeaderItem.svelte";
-    import CardBox from "$lib/components/CardBox.svelte";
-    import SetBox from "$lib/components/SetBox.svelte";
-    import Pokeball from "$lib/components/Pokeball.svelte";
-    import Headline from "./Headline.svelte";
-
-    async function logout() {
-        await signOut();
-        goto(`${base}/`);
-    }
 
     let sizeBox = 100;
-    let sizeIcon = 50;
 </script>
 
 <div class="header">

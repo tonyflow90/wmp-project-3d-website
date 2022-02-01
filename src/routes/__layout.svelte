@@ -51,29 +51,4 @@
 </div>
 
 <style>
-  .pokeballs {
-    background-color: #cccccc;
-    background-image: url("/images/pokeballs/pokeballs_2.svg");
-  }
-
-  .background_1 {
-    background-color: #e3ffe7;
-    background-image: url("/images/pokemon/pokemonset_1.svg");
-  }
-
-  .background_2 {
-    background-color: rgb(219, 203, 203);
-    background-image: var(--b-i);
-    /* background-image: url("/images/pokemon/pokemonset_2.svg"); */
-  }
-
-  .background_3 {
-    background-color: rgb(255, 240, 255);
-    background-image: url("/images/pokemon/pokemonset_3.svg");
-  }
-
-  .background_4 {
-    background-color: rgb(255, 255, 255);
-    background-image: url("/images/pokemon/pokemonset_4.svg");
-  }
 </style>
