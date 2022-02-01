@@ -27,11 +27,11 @@
                 <p class="title">Info</p>
                 <ul class="card-info-grid background">
                     <li>
-                        <p class="text">Keno Bohen</p>
+                        <p class="text">Keno Bohlen</p>
                         <span class="small">Creator</span>
                     </li>
                     <li>
-                        <p class="text">123456</p>
+                        <p class="text">7013243</p>
                         <span class="small">Matnr:</span>
                     </li>
                 </ul>
