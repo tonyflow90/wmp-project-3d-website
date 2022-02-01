@@ -1,6 +1,6 @@
 {
   ".svelte-kit/runtime/client/start.js": {
-    "file": "start-f91554ef.js",
+    "file": "start-a906f970.js",
     "src": ".svelte-kit/runtime/client/start.js",
     "isEntry": true,
     "imports": [
@@ -42,17 +42,18 @@
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-520c173c.js",
+    "file": "pages/index.svelte-86389273.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_vendor-b03f454b.js",
       "_paths-4b3c6e7e.js",
-      "_pokemon-02328fb4.js",
+      "_pokemon-0216b51c.js",
       "_SetBox-10d6f365.js",
-      "_PokemonCard-1bbfc5c1.js",
+      "_PokemonCard-680e8cad.js",
       "_Tiltable-2463e0b9.js",
+      "_Headline-572806f9.js",
       "_Trapezoid-2e5e3870.js"
     ],
     "css": [
@@ -60,16 +61,17 @@
     ]
   },
   "src/routes/cardlist/index.svelte": {
-    "file": "pages/cardlist/index.svelte-1c1288d9.js",
+    "file": "pages/cardlist/index.svelte-d5a85184.js",
     "src": "src/routes/cardlist/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_vendor-b03f454b.js",
       "_paths-4b3c6e7e.js",
-      "_pokemon-02328fb4.js",
-      "_PokemonCard-1bbfc5c1.js",
+      "_pokemon-0216b51c.js",
+      "_PokemonCard-680e8cad.js",
       "_Tiltable-2463e0b9.js",
+      "_Headline-572806f9.js",
       "_Trapezoid-2e5e3870.js"
     ],
     "css": [
@@ -77,20 +79,21 @@
     ]
   },
   "src/routes/setlist/index.svelte": {
-    "file": "pages/setlist/index.svelte-d00db531.js",
+    "file": "pages/setlist/index.svelte-e84632d6.js",
     "src": "src/routes/setlist/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_vendor-b03f454b.js",
-      "_pokemon-02328fb4.js",
+      "_pokemon-0216b51c.js",
       "_paths-4b3c6e7e.js",
       "_SetBox-10d6f365.js",
+      "_Headline-572806f9.js",
       "_Trapezoid-2e5e3870.js"
     ]
   },
   "src/routes/card/[setId]-[cardId].svelte": {
-    "file": "pages/card/_setId_-_cardId_.svelte-6641b9ac.js",
+    "file": "pages/card/_setId_-_cardId_.svelte-c5b03d7f.js",
     "src": "src/routes/card/[setId]-[cardId].svelte",
     "isEntry": true,
     "isDynamicEntry": true,
@@ -98,16 +101,16 @@
       "_vendor-b03f454b.js",
       "_stores-83f18513.js",
       "_paths-4b3c6e7e.js",
-      "_pokemon-02328fb4.js",
+      "_pokemon-0216b51c.js",
       "_Trapezoid-2e5e3870.js",
-      "_PokemonCard-1bbfc5c1.js"
+      "_PokemonCard-680e8cad.js"
     ],
     "css": [
       "assets/pages/card/_setId_-_cardId_.svelte-558782e5.css"
     ]
   },
   "src/routes/set/[uid].svelte": {
-    "file": "pages/set/_uid_.svelte-b97ee6a1.js",
+    "file": "pages/set/_uid_.svelte-3c83e3b0.js",
     "src": "src/routes/set/[uid].svelte",
     "isEntry": true,
     "isDynamicEntry": true,
@@ -115,9 +118,10 @@
       "_vendor-b03f454b.js",
       "_stores-83f18513.js",
       "_paths-4b3c6e7e.js",
-      "_pokemon-02328fb4.js",
-      "_PokemonCard-1bbfc5c1.js",
+      "_pokemon-0216b51c.js",
+      "_PokemonCard-680e8cad.js",
       "_Tiltable-2463e0b9.js",
+      "_Headline-572806f9.js",
       "_Trapezoid-2e5e3870.js"
     ],
     "css": [
@@ -145,11 +149,10 @@
       "assets/Trapezoid-49b6af90.css"
     ]
   },
-  "_pokemon-02328fb4.js": {
-    "file": "chunks/pokemon-02328fb4.js",
+  "_pokemon-0216b51c.js": {
+    "file": "chunks/pokemon-0216b51c.js",
     "imports": [
-      "_vendor-b03f454b.js",
-      "_Trapezoid-2e5e3870.js"
+      "_vendor-b03f454b.js"
     ],
     "css": [
       "assets/pokemon-197ae871.css"
@@ -164,12 +167,12 @@
       "assets/SetBox-ceba355d.css"
     ]
   },
-  "_PokemonCard-1bbfc5c1.js": {
-    "file": "chunks/PokemonCard-1bbfc5c1.js",
+  "_PokemonCard-680e8cad.js": {
+    "file": "chunks/PokemonCard-680e8cad.js",
     "imports": [
       "_vendor-b03f454b.js",
       "_paths-4b3c6e7e.js",
-      "_pokemon-02328fb4.js"
+      "_pokemon-0216b51c.js"
     ],
     "css": [
       "assets/PokemonCard-35289a2e.css"
@@ -182,6 +185,14 @@
     ],
     "css": [
       "assets/Tiltable-87e6d094.css"
+    ]
+  },
+  "_Headline-572806f9.js": {
+    "file": "chunks/Headline-572806f9.js",
+    "imports": [
+      "_vendor-b03f454b.js",
+      "_Trapezoid-2e5e3870.js",
+      "_pokemon-0216b51c.js"
     ]
   }
 }
