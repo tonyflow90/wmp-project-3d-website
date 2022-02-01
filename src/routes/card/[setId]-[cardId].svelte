@@ -50,9 +50,9 @@
 <Page>
     {#await loadCard() then card}
         {#if card}
-            <Headline --hue="265">
+            <!-- <Headline --hue="265">
                 {card.name}
-            </Headline>
+            </Headline> -->
 
             <div class="card">
                 <Rotatable>
@@ -82,15 +82,15 @@
                         <div class="background">
                             <ul class="card-info-grid">
                                 <li>
-                                    <p class="text">{card.level}</p>
+                                    <p class="text">{card.level ? card.level : '-'}</p>
                                     <span class="small">Level</span>
                                 </li>
                                 <li>
-                                    <p class="text">{card.hp}</p>
+                                    <p class="text">{card.hp ? card.hp : '-'}</p>
                                     <span class="small">HP</span>
                                 </li>
                                 <li>
-                                    <p class="text">{card.types}</p>
+                                    <p class="text">{card.types ? card.types : '-'}</p>
                                     <span class="small">Type</span>
                                 </li>
                                 <li>
@@ -101,7 +101,7 @@
 
                             <ul class="card-info-description">
                                 <li>
-                                    <p class="text">{card.flavorText}</p>
+                                    <p class="text">{card.flavorText ? card.flavorText : '-'}</p>
                                     <span class="small">Flavor Text</span>
                                 </li>
                             </ul>
@@ -135,7 +135,7 @@
                                 value: "-30",
                             },
                         ], -->
-                        <p class="title">Attacks</p>
+                        <!-- <p class="title">Attacks</p>
                         <div class="background">
                             <ul class="card-info-grid">
                                 {#each card.attacks as attack}
@@ -147,7 +147,7 @@
                                     </li>
                                 {/each}
                             </ul>
-                        </div>
+                        </div> -->
                     </Trapezoid>
                 </div>
 
